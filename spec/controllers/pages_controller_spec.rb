@@ -11,7 +11,7 @@ render_views
     
     it "should have the right title" do 
     get 'home' 
-    response.should have_selector("title",:content => "Ruby on Rails Tutorial Sample App | Home")
+    response.should have_selector("title",:content => "Emopad | Home")
 	end
     
   end
@@ -24,7 +24,7 @@ render_views
     
      it "should have the right title" do 
     get 'contact' 
-    response.should have_selector("title",:content => "Ruby on Rails Tutorial Sample App | Contact")
+    response.should have_selector("title",:content => "Emopad | Contact")
 	end
     
   end
@@ -37,7 +37,7 @@ render_views
     
      it "should have the right title" do 
     get 'about' 
-    response.should have_selector("title",:content => "Ruby on Rails Tutorial Sample App | About")
+    response.should have_selector("title",:content => "Emopad | About")
 	end
     
   end
