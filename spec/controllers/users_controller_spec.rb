@@ -16,7 +16,7 @@ describe UsersController do
     
   it "should not create a user" do 
   	lambda do 
-  		post :create, :user => @attr
+  	post :create, :user => @attr
   	end.should_not change(User, :count)
   end
   
@@ -53,6 +53,11 @@ end
   		post :create, :user => @attr
   		flash[:success].should =~ /welcome to emopad/i
   end
+  
+  it "should sign the user in" do 
+  post :create, :user => @attr
+  controller.should be_signed_in
+  end
       
 end
 end
@@ -74,24 +79,38 @@ end
     end  
     
     it "should have the right title" do 
-    get :show, :id => @user
-    response.should have_selector("title", :content => @user.name)
+    	get :show, :id => @user
+    	response.should have_selector("title", :content => @user.name)
     end
     
     it "should include the user's name" do 
-    get :show, :id => @user
-    response.should have_selector("h1", :content => @user.name)
+    	get :show, :id => @user
+    	response.should have_selector("h1", :content => @user.name)
     end
     
     it "should have a profile image" do 
-    get :show, :id => @user
-    response.should have_selector("h1>img", :class => "gravatar")
+    	get :show, :id => @user
+    	response.should have_selector("h1>img", :class => "gravatar")
     end
     
 
 end
 
   describe "GET 'new'" do
+  
+ 	it "should have a name field" do 
+ 		get :new
+		response.should have_selector("input[name='user[name]'][type='text']") 
+	end
+	
+	#it "should have an email field"
+	#end
+	
+	#it "should have a password field"
+	#end
+	
+	#it "should have a password confirmation field" 
+	#end
 
     it "should be successful" do
     	get 'new'
